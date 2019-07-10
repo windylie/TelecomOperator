@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TelecomOperatorApi.Models
+namespace TelecomOperatorApi.Dtos
 {
     public class CustomerDto
     {

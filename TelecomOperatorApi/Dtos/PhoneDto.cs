@@ -1,4 +1,4 @@
-﻿namespace TelecomOperatorApi.Models
+﻿namespace TelecomOperatorApi.Dtos
 {
     public class PhoneDto
     {
