@@ -11,6 +11,8 @@ namespace TelecomOperatorApi
 {
     public class Startup
     {
+        private readonly string AllowFrontendWebOrigins = "_allowFrontendWebOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -21,6 +23,15 @@ namespace TelecomOperatorApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowFrontendWebOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000");
+                });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var connectionString = Configuration["connectionStrings:telecomOperatorInfoDBConnectionString"];
@@ -37,6 +48,7 @@ namespace TelecomOperatorApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(AllowFrontendWebOrigins);
             app.UseMvc();
         }
     }
