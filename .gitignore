@@ -349,3 +349,5 @@ healthchecksdb
 MigrationBackup/
 
 .ionide
+
+appsettings.Production.json

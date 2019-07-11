@@ -35,7 +35,8 @@ namespace TelecomOperatorApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             var connectionString = Configuration["connectionStrings:telecomOperatorInfoDBConnectionString"];
-            services.AddDbContext<TelecomOperatorContext>(o => o.UseSqlServer(connectionString));
+            services.AddEntityFrameworkNpgsql()
+                    .AddDbContext<TelecomOperatorContext>(o => o.UseNpgsql(connectionString));
 
             services.AddScoped<IPhoneInfoRepository, PhoneInfoRepository>();
         }
