@@ -34,19 +34,12 @@ class CustomerPhoneList extends React.Component {
                 </tr>);
         }
 
-        //<i class="icon checkmark"></i> Approved
         return phoneList.map ((item) => {
             return (
-                <tr>
+                <tr key={"phone-" + item.id }>
                     <td>{item.phoneNo}</td>
                     <td>{this.getIcon(item.activated)}{item.activated ? "Activated" : "Inactive"}</td>
                 </tr>
-                // <div className="item" key={"phone-" + item.id }>
-                //     <div className="right floated content">
-                //         <div className="ui label">{item.activated ? "Activated" : "Inactive"}</div>
-                //     </div>
-                //     <div className="content">{item.phoneNo}</div>
-                // </div>
             );
         });
     }
@@ -64,7 +57,7 @@ class CustomerPhoneList extends React.Component {
                             Show Phones
                     </button>
                 </div>
-                <table class="ui very basic table">
+                <table className="ui very basic table">
                     <tbody>
                         {this.renderPhoneList()}
                     </tbody>
