@@ -23,6 +23,7 @@ namespace TelecomOperatorApi.Controllers
                     {
                         Id = p.Id,
                         CustomerId = p.CustomerId,
+                        CustomerName = p.Customer.Name,
                         PhoneNo = p.Number,
                         Activated = p.Activated
                     })

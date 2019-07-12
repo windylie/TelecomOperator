@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using TelecomOperatorApi.Entities;
 
@@ -25,7 +26,7 @@ namespace TelecomOperatorApi.Repository
 
         public IEnumerable<Phone> GetAllPhoneNumbers()
         {
-            return _context.Phones.OrderBy(p => p.CustomerId).ToList();
+            return _context.Phones.Include(p => p.Customer).OrderBy(p => p.CustomerId).ToList();
         }
 
         public IEnumerable<Phone> GetCustomerPhoneNumbers(int customerId)
