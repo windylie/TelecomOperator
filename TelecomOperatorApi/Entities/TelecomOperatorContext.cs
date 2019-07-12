@@ -9,6 +9,11 @@ namespace TelecomOperatorApi.Entities
             Database.EnsureCreated();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ForNpgsqlUseIdentityColumns();
+        }
+
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Customer> Customers { get; set; }
     }
