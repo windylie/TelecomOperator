@@ -5,6 +5,7 @@ namespace TelecomOperatorApi.Repository
 {
     public interface IPhoneInfoRepository
     {
+        IEnumerable<Customer> GetAllCustomers();
         IEnumerable<Phone> GetAllPhoneNumbers();
         IEnumerable<Phone> GetCustomerPhoneNumbers(int customerId);
         bool IsCustomerExists(int customerId);

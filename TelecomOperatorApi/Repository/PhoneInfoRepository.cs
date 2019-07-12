@@ -48,5 +48,10 @@ namespace TelecomOperatorApi.Repository
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public IEnumerable<Customer> GetAllCustomers()
+        {
+            return _context.Customers.OrderBy(c => c.Id).ToList();
+        }
     }
 }

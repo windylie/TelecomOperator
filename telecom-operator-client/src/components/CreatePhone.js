@@ -15,11 +15,12 @@ class CreatePhone extends React.Component {
 
     onBtnClick = () => {
         const url = '/customers/' + this.state.customerId + '/phones/';
-        console.log(url);
         api.post(url, { phoneNo: this.state.phoneNo })
             .then(res => {
-                console.log(res);
-                console.log(res.data);
+                this.setState({ response: 'Successfully added new phone number!'});
+            })
+            .catch((error) => {
+                this.setState({ response: error.response.data.message });
             });
     }
 
@@ -37,6 +38,7 @@ class CreatePhone extends React.Component {
                             onChange={this.onPhoneNoChange} />
                 </div>
                 <button className="ui button" onClick={this.onBtnClick}>Submit</button>
+                <div>{this.state.response}</div>
             </div>
         );
     }

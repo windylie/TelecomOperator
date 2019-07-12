@@ -11,9 +11,23 @@ namespace TelecomOperatorApi.Controllers
     public class CustomerController : Controller
     {
         private IPhoneInfoRepository _phoneInfoRepository;
+
         public CustomerController(IPhoneInfoRepository phoneInfoRepository)
         {
             _phoneInfoRepository = phoneInfoRepository;
+        }
+
+        [HttpGet()]
+        public IActionResult GetAllCustomers()
+        {
+            var customers = _phoneInfoRepository.GetAllCustomers()
+                .Select(c => 
+                    new CustomerDto()
+                    {
+                        Id = c.Id,
+                        Name = c.Name
+                    });
+            return Ok(customers);
         }
 
         [HttpGet("{customerId}/phones", Name = "GetCustomerPhones")]
