@@ -1,28 +1,23 @@
 import React from 'react';
 import api from '../apis/telecomOperator';
+import CustomerList from './CustomerList';
 
 class CustomerPhoneList extends React.Component {
-    state = { inputCustomerId : '', phoneList : [] }
+    state = { phoneList : [] }
 
-    onInputChange = (event) => {
-        this.setState({ inputCustomerId: event.target.value });
-    }
-
-    onBtnClick = async () => {
-        const response = await api.get('/customers/' + this.state.inputCustomerId + '/phones');
+    onInputChange = async (customerId) => {
+        const response = await api.get('/customers/' + customerId + '/phones');
         this.setState({ phoneList : response.data });
     }
 
-    getIcon(activated)
-    {
+    getIcon(activated) {
         if (activated)
             return <i className="icon checkmark" />
 
         return <i className="exclamation icon" />
     }
 
-    renderPhoneList()
-    {
+    renderPhoneList() {
         const phoneList = this.state.phoneList;
 
         if (!phoneList || phoneList.length === 0) {
@@ -47,16 +42,7 @@ class CustomerPhoneList extends React.Component {
     render() {
         return (
             <div>
-                <div className="ui action input">
-                    <input type="text"
-                        placeholder="Input Customer Id..."
-                        onChange={this.onInputChange}
-                        value={this.state.inputCustomerId} />
-                    <button className="ui button"
-                            onClick={this.onBtnClick}>
-                            Show Phones
-                    </button>
-                </div>
+                <CustomerList onCustomerSelected={this.onInputChange} />
                 <table className="ui very basic table">
                     <tbody>
                         {this.renderPhoneList()}
