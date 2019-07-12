@@ -28,7 +28,7 @@ namespace TelecomOperatorApi
                 options.AddPolicy(AllowFrontendWebOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+                    builder.WithOrigins(Configuration["AllowOrigins"]).AllowAnyHeader().AllowAnyMethod();
                 });
             });
 
