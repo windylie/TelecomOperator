@@ -6,11 +6,11 @@ class CreatePhone extends React.Component {
     state = { customerId : '', phoneNo : '', response : ''}
 
     onCustomerIdChange = (customerId) => {
-        this.setState({ customerId });
+        this.setState({ customerId, response:'' });
     }
 
     onPhoneNoChange = (event) => {
-        this.setState({ phoneNo : event.target.value });
+        this.setState({ phoneNo : event.target.value, response:'' });
     }
 
     onBtnClick = () => {
