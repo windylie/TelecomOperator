@@ -1,8 +1,29 @@
 import React from 'react';
 import api from '../apis/telecomOperator';
+import Loading from './Loading'
 
 class PhoneList extends React.Component {
-    state = { phoneList : [] };
+    state = { phoneList : [], loading : true };
+
+    renderResultTable()
+    {
+        return (
+            <div>
+                <table className="ui celled table">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Phone Number</th>
+                            <th>Activated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { this.renderTableBody() }
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
 
     renderTableBody()
     {
@@ -30,27 +51,11 @@ class PhoneList extends React.Component {
 
     async componentDidMount() {
         const response = await api.get('/phones');
-        this.setState({ phoneList : response.data });
+        this.setState({ phoneList : response.data, loading : false });
     }
 
-    render()
-    {
-        return (
-            <div>
-                <table className="ui celled table">
-                    <thead>
-                        <tr>
-                            <th>Customer Name</th>
-                            <th>Phone Number</th>
-                            <th>Activated</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { this.renderTableBody() }
-                    </tbody>
-                </table>
-            </div>
-        );
+    render() {
+        return this.state.loading ? <Loading /> : this.renderResultTable();
     }
 }
 
