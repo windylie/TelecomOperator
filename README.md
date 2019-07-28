@@ -21,6 +21,12 @@
     npm start
     ```
 
+- Run Tests
+    ```
+    dotnet test
+    ```
+    Note : integration tests required database, this assumed that postgres db is already installed locally and available at port 5432 with username/password as specified in `TelecomOperatorApi/appsettings.Test.json`
+
 ## Backend APIs
 
 Backend offers 5 APIs:
